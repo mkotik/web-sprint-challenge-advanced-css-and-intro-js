@@ -332,12 +332,23 @@ The function should console.log 50 chunks of HTML code that match the structure 
 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
+//I'm not sure how to use the for.. in loop here. Using the standard for loop made more sense to me.
+
 function getHTML(data) {
-  for (let i = 0; i < 1; i++) {
-    let current = data[i];
-    for (let key in current) {
-      console.log(key, current[key]);
-    }
+  for (let i = 0; i < data.length; i++) {
+    const cur = data[i];
+    const imgName = cur.name.split(" ").join("-");
+    const HTMLStr = `
+    <div id="artist">
+    <div class="image">
+        <img src="assets/${imgName}.jpg"/>
+    </div>
+    <div class = "name">
+       <a href="${cur.wikipedia}">${cur.name}</a>
+    </div>
+    <div class = "bio">${cur.bio}</div>
+    </div>`;
+    console.log(HTMLStr);
   }
 }
 getHTML(artists);
@@ -345,12 +356,29 @@ getHTML(artists);
 /* 💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪
 Create a function called `randomize` that takes a data array as an argument and returns a the same array in a randomized order. */
 
-function randomize(/* Code here */) {
-  /* Code here */
+function randomize(dataArr) {
+  const randIndexArr = [];
+  const randIndexGenerator = () => Math.floor(Math.random() * dataArr.length);
+  while (randIndexArr.length < dataArr.length) {
+    let randomIndex = randIndexGenerator();
+    if (!randIndexArr.includes(randomIndex)) {
+      randIndexArr.push(randomIndex);
+    }
+  }
+  const randomizedDataArr = [];
+  for (let i = 0; i < dataArr.length; i++) {
+    let destinationIndex = randIndexArr[i];
+    randomizedDataArr[destinationIndex] = dataArr[i];
+  }
+  return randomizedDataArr;
 }
 
 /* 💪💪💪💪💪💪 STRETCH 3: 💪💪💪💪💪💪
  Use advanced array methods (.map, .reduce, .filer) to refactor your MVP code (create an array of all artists born in the 1900s with .filter, for example) */
+
+console.log(
+  artists.filter((cur) => cur.years[0] === "1" && cur.years[1] === "9")
+);
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
 function foo() {
