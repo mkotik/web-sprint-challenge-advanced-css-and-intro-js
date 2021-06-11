@@ -380,6 +380,10 @@ console.log(
   artists.filter((cur) => cur.years[0] === "1" && cur.years[1] === "9")
 );
 
+const lotsOfArt2 = function (arr) {
+  return arr.filter((cur) => cur.paintings > 100).map((cur) => cur.name);
+};
+
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑*/
 function foo() {
   console.log("its working");
