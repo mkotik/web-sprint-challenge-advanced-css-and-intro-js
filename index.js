@@ -333,13 +333,14 @@ The function should console.log 50 chunks of HTML code that match the structure 
 ‼️ You do **NOT** need to get these to display on your page, but you can copy and paste the result into your HTML file if you'd like to see what that would look like. */
 
 //I'm not sure how to use the for.. in loop here. Using the standard for loop made more sense to me.
+// const artistsContainer = document.querySelector(".artists-container");
 
 function getHTML(data) {
   for (let i = 0; i < data.length; i++) {
     const cur = data[i];
     const imgName = cur.name.split(" ").join("-");
     const HTMLStr = `
-    <div id="artist">
+    <div class="artist">
     <div class="image">
         <img src="assets/${imgName}.jpg"/>
     </div>
@@ -348,6 +349,7 @@ function getHTML(data) {
     </div>
     <div class = "bio">${cur.bio}</div>
     </div>`;
+    // artistsContainer.insertAdjacentHTML("beforeend", HTMLStr); //Trying to insert the remaining paints into HTML, but a console error is preventing this.
     console.log(HTMLStr);
   }
 }
